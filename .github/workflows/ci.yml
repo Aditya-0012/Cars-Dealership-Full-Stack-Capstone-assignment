@@ -1,0 +1,53 @@
+name: Django and frontend CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+      - name: Django system check
+        working-directory: server
+        env:
+          DJANGO_SECRET_KEY: test-only-secret-key
+          DJANGO_DEBUG: 'True'
+        run: python manage.py check
+      - name: Run migrations
+        working-directory: server
+        env:
+          DJANGO_SECRET_KEY: test-only-secret-key
+          DJANGO_DEBUG: 'True'
+        run: python manage.py migrate --noinput
+      - name: Seed sample data
+        working-directory: server
+        env:
+          DJANGO_SECRET_KEY: test-only-secret-key
+          DJANGO_DEBUG: 'True'
+        run: python manage.py seed_data
+      - name: Run tests
+        working-directory: server
+        env:
+          DJANGO_SECRET_KEY: test-only-secret-key
+          DJANGO_DEBUG: 'True'
+        run: python manage.py test
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install frontend dependencies
+        working-directory: server/frontend
+        run: npm install
+      - name: Build React frontend
+        working-directory: server/frontend
+        run: npm run build
