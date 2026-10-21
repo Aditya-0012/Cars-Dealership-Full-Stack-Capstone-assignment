@@ -68,13 +68,9 @@ jobs:
             sleep 1
           done
           curl -fsS http://127.0.0.1:8000/djangoapp/api/dealers/ >/dev/null
-          cat > ../loginuser <<'EOF'
-$ curl -i -c cookies.txt -X POST http://127.0.0.1:8000/djangoapp/api/login/ -H 'Content-Type: application/json' -d '{"username":"demo","password":"DemoPass123!"}'
-EOF
+          printf "%s\\n" "$ curl -i -c cookies.txt -X POST http://127.0.0.1:8000/djangoapp/api/login/ -H 'Content-Type: application/json' -d '{\\"username\\":\\"demo\\",\\"password\\":\\"DemoPass123!\\"}'" > ../loginuser
           curl -i -c cookies.txt -X POST http://127.0.0.1:8000/djangoapp/api/login/ -H 'Content-Type: application/json' -d '{"username":"demo","password":"DemoPass123!"}' >> ../loginuser 2>&1
-          cat > ../logoutuser <<'EOF'
-$ curl -i -b cookies.txt -c cookies.txt -X POST http://127.0.0.1:8000/djangoapp/api/logout/ -H 'Content-Type: application/json' -d '{}'
-EOF
+          printf "%s\\n" "$ curl -i -b cookies.txt -c cookies.txt -X POST http://127.0.0.1:8000/djangoapp/api/logout/ -H 'Content-Type: application/json' -d '{}'" > ../logoutuser
           curl -i -b cookies.txt -c cookies.txt -X POST http://127.0.0.1:8000/djangoapp/api/logout/ -H 'Content-Type: application/json' -d '{}' >> ../logoutuser 2>&1
           printf '$ curl -sS http://127.0.0.1:8000/djangoapp/api/dealers/\n' > ../getalldealers
           curl -sS http://127.0.0.1:8000/djangoapp/api/dealers/ >> ../getalldealers 2>&1
