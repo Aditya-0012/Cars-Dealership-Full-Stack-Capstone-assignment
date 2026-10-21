@@ -35,7 +35,7 @@ jobs:
           DJANGO_SECRET_KEY: test-only-secret-key
           DJANGO_DEBUG: 'True'
         run: python manage.py seed_data
-      - name: Run tests
+      - name: Run Django tests
         working-directory: server
         env:
           DJANGO_SECRET_KEY: test-only-secret-key
@@ -51,3 +51,72 @@ jobs:
       - name: Build React frontend
         working-directory: server/frontend
         run: npm run build
+      - name: Generate real API and terminal evidence
+        working-directory: server
+        env:
+          DJANGO_SECRET_KEY: test-only-secret-key
+          DJANGO_DEBUG: 'True'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python manage.py runserver 127.0.0.1:8000 > ../django_server 2>&1 &
+          SERVER_PID=$!
+          cleanup() { kill "$SERVER_PID" >/dev/null 2>&1 || true; }
+          trap cleanup EXIT
+          for n in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8000/djangoapp/api/dealers/ >/dev/null; then break; fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:8000/djangoapp/api/dealers/ >/dev/null
+          printf '$ curl -i -c cookies.txt -X POST http://127.0.0.1:8000/djangoapp/api/login/ -H "Content-Type: application/json" -d {"username":"demo","password":"DemoPass123!"}\n' > ../loginuser
+          curl -i -c /tmp/cars-dealership-cookies.txt -X POST http://127.0.0.1:8000/djangoapp/api/login/ -H 'Content-Type: application/json' -d '{"username":"demo","password":"DemoPass123!"}' >> ../loginuser 2>&1
+          printf '$ curl -i -b cookies.txt -c cookies.txt -X POST http://127.0.0.1:8000/djangoapp/api/logout/ -H "Content-Type: application/json" -d {}\n' > ../logoutuser
+          curl -i -b /tmp/cars-dealership-cookies.txt -c /tmp/cars-dealership-cookies.txt -X POST http://127.0.0.1:8000/djangoapp/api/logout/ -H 'Content-Type: application/json' -d '{}' >> ../logoutuser 2>&1
+          printf '$ curl -sS http://127.0.0.1:8000/djangoapp/api/dealers/\n' > ../getalldealers
+          curl -sS http://127.0.0.1:8000/djangoapp/api/dealers/ >> ../getalldealers 2>&1
+          printf '\n\n$ curl -sS http://127.0.0.1:8000/djangoapp/api/dealers/1/reviews/\n' >> ../getdealerreviews
+          curl -sS http://127.0.0.1:8000/djangoapp/api/dealers/1/reviews/ >> ../getdealerreviews 2>&1
+          printf '$ curl -sS http://127.0.0.1:8000/djangoapp/api/dealers/1/\n' > ../getdealerbyid
+          curl -sS http://127.0.0.1:8000/djangoapp/api/dealers/1/ >> ../getdealerbyid 2>&1
+          printf '$ curl -sS "http://127.0.0.1:8000/djangoapp/api/dealers/?state=Kansas"\n' > ../getdealersbyState
+          curl -sS 'http://127.0.0.1:8000/djangoapp/api/dealers/?state=Kansas' >> ../getdealersbyState 2>&1
+          printf '$ curl -sS http://127.0.0.1:8000/djangoapp/api/car-makes/\n' > ../getallcarmakes
+          curl -sS http://127.0.0.1:8000/djangoapp/api/car-makes/ >> ../getallcarmakes 2>&1
+          printf '$ curl -sS -X POST http://127.0.0.1:8000/djangoapp/api/analyze-review/ -H "Content-Type: application/json" -d {"review":"Fantastic services"}\n' > ../analyzereview
+          curl -sS -X POST http://127.0.0.1:8000/djangoapp/api/analyze-review/ -H 'Content-Type: application/json' -d '{"review":"Fantastic services"}' >> ../analyzereview 2>&1
+          sleep 1
+          {
+            echo "GitHub Actions workflow: Django and frontend CI"
+            echo "Workflow run ID: ${GITHUB_RUN_ID}"
+            echo "Commit SHA: ${GITHUB_SHA}"
+            echo "Steps completed before evidence generation:"
+            echo "1. Checkout repository"
+            echo "2. Set up Python 3.12"
+            echo "3. Install Django dependencies"
+            echo "4. Django system check"
+            echo "5. Database migrations"
+            echo "6. Seed sample dealer and car data"
+            echo "7. Django unit tests"
+            echo "8. Set up Node.js 22"
+            echo "9. Install React dependencies"
+            echo "10. Build the React frontend"
+            echo "11. Start Django and execute cURL smoke tests"
+            echo "Detailed step logs: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          } > ../CICD
+          cat ../django_server
+      - name: Upload command-output evidence files
+        uses: actions/upload-artifact@v4
+        with:
+          name: cars-dealership-terminal-evidence
+          path: |
+            django_server
+            loginuser
+            logoutuser
+            getdealerreviews
+            getalldealers
+            getdealerbyid
+            getdealersbyState
+            getallcarmakes
+            analyzereview
+            CICD
+          if-no-files-found: error
