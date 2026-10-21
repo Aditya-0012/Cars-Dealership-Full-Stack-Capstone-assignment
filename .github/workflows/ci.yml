@@ -114,12 +114,21 @@ jobs:
         run: |
           set -euo pipefail
           python manage.py shell -c "from django.contrib.auth.models import User; u, _ = User.objects.get_or_create(username='root'); u.is_staff=True; u.is_superuser=True; u.is_active=True; u.set_password('ScreenshotRoot123!'); u.save()"
+          python manage.py runserver 127.0.0.1:8000 > ../django_screenshot_server.log 2>&1 &
+          SERVER_PID=$!
+          cleanup() { kill "$SERVER_PID" >/dev/null 2>&1 || true; }
+          trap cleanup EXIT
           sudo apt-get update -qq
           sudo apt-get install -y -qq xvfb scrot
           cd frontend
           npm install --no-save playwright
           npx playwright install --with-deps chromium
           cd ..
+          for n in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8000/djangoapp/api/dealers/ >/dev/null; then break; fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:8000/djangoapp/api/dealers/ >/dev/null
           xvfb-run -a -s "-screen 0 1600x1000x24" node scripts/capture_screenshots.mjs
       - name: Upload command-output evidence files
         uses: actions/upload-artifact@v4
