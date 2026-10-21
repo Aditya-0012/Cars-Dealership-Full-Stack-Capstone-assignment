@@ -3,7 +3,7 @@ permissions:
   contents: write
 concurrency:
   group: cars-dealership-ci-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 on:
   push:
     branches: [main]
@@ -144,7 +144,7 @@ jobs:
             sleep 1
           done
           curl -fsS http://127.0.0.1:8000/djangoapp/api/dealers/ >/dev/null
-          xvfb-run -a -s "-screen 0 1600x1000x24" node ../scripts/capture_screenshots.mjs
+          xvfb-run -a -s "-screen 0 1600x1000x24" node ../scripts/capture_homepage_screenshot.mjs
       - name: Commit local rubric evidence files
         if: github.event_name != 'pull_request' && github.actor != 'github-actions[bot]'
         shell: bash
