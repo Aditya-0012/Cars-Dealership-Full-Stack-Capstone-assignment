@@ -36,6 +36,8 @@ jobs:
         env:
           DJANGO_SECRET_KEY: test-only-secret-key
           DJANGO_DEBUG: 'True'
+          CREATE_DEMO_USER: 'true'
+          DEMO_USER_PASSWORD: DemoPass123!
         run: python manage.py seed_data
       - name: Run Django tests
         working-directory: server
