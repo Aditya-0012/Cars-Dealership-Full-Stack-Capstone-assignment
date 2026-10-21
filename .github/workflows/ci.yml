@@ -129,7 +129,7 @@ jobs:
             sleep 1
           done
           curl -fsS http://127.0.0.1:8000/djangoapp/api/dealers/ >/dev/null
-          xvfb-run -a -s "-screen 0 1600x1000x24" node scripts/capture_screenshots.mjs
+          xvfb-run -a -s "-screen 0 1600x1000x24" node ../scripts/capture_screenshots.mjs
       - name: Upload command-output evidence files
         uses: actions/upload-artifact@v4
         with:
