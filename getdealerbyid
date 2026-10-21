@@ -1,0 +1,2 @@
+$ curl -sS http://127.0.0.1:8000/djangoapp/api/dealers/1/
+{"dealer": {"id": 1, "name": "Prairie Motor Group", "city": "Wichita", "state": "Kansas", "address": "1200 E Central Ave, Wichita, KS", "phone": "+1-316-555-0101", "email": "wichita@prairiemotors.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}}

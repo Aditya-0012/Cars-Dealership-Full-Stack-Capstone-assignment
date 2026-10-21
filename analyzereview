@@ -1,0 +1,2 @@
+$ curl -sS -X POST http://127.0.0.1:8000/djangoapp/api/analyze-review/ -H "Content-Type: application/json" -d {"review":"Fantastic services"}
+{"review": "Fantastic services", "sentiment": "positive", "score": 1.0, "positive_words": 1, "negative_words": 0}
