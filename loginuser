@@ -1,9 +1,9 @@
 $ curl -i -c cookies.txt -X POST http://127.0.0.1:8000/djangoapp/api/login/ -H 'Content-Type: application/json' -d '{"username":"demo","password":"DemoPass123!"}'
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    97  100    52  100    45    172    149 --:--:-- --:--:-- --:--:--   322
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    97  100    52  100    45    175    152 --:--:-- --:--:-- --:--:--   328
 HTTP/1.1 200 OK
-Date: Wed, 21 Oct 2026 18:43:46 GMT
+Date: Wed, 21 Oct 2026 18:47:32 GMT
 Server: WSGIServer/0.2 CPython/3.12.15
 Content-Type: application/json
 X-Frame-Options: DENY
@@ -12,7 +12,7 @@ Content-Length: 52
 X-Content-Type-Options: nosniff
 Referrer-Policy: same-origin
 Cross-Origin-Opener-Policy: same-origin
-Set-Cookie:  csrftoken=mON2SDQeB3645Tll5ioLNdm8t60DBHbk; expires=Wed, 20 Oct 2027 18:43:46 GMT; Max-Age=31449600; Path=/; SameSite=Lax
-Set-Cookie:  sessionid=age6rljr4kzqbrrmlqnxg6t82s106400; expires=Wed, 04 Nov 2026 18:43:46 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax
+Set-Cookie:  csrftoken=010R8GZyDxlO5mgKw0EqM2xclKwIW6an; expires=Wed, 20 Oct 2027 18:47:32 GMT; Max-Age=31449600; Path=/; SameSite=Lax
+Set-Cookie:  sessionid=a3071zcbjq9t9nnuvovknipm2ew9aiyi; expires=Wed, 04 Nov 2026 18:47:32 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax
 
 {"message": "Login successful.", "username": "demo"}

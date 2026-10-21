@@ -3,21 +3,21 @@ Watching for file changes with StatReloader
 Performing system checks...
 
 System check identified no issues (0 silenced).
-October 22, 2026 - 00:13:44
+October 22, 2026 - 00:17:30
 Django version 5.2.18, using settings 'config.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 
 WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
 For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
-[22/Oct/2026 00:13:45] "GET /fetchDealers HTTP/1.1" 200 4178
-[22/Oct/2026 00:13:45] "GET /fetchDealers HTTP/1.1" 200 4178
-[22/Oct/2026 00:13:46] "POST /djangoapp/api/login/ HTTP/1.1" 200 52
-[22/Oct/2026 00:13:46] "POST /djangoapp/api/logout/ HTTP/1.1" 200 60
-[22/Oct/2026 00:13:46] "GET /fetchDealers HTTP/1.1" 200 4178
-[22/Oct/2026 00:13:46] "GET /fetchReviews/dealer/1 HTTP/1.1" 200 395
-[22/Oct/2026 00:13:46] "GET /fetchDealer/1 HTTP/1.1" 200 523
-[22/Oct/2026 00:13:46] "GET /fetchDealers/Kansas HTTP/1.1" 200 1583
-[22/Oct/2026 00:13:46] "GET /djangoapp/get_cars HTTP/1.1" 200 2840
-[22/Oct/2026 00:13:46] "POST /djangoapp/api/analyze-review/ HTTP/1.1" 200 113
-[22/Oct/2026 00:13:51] "GET /fetchDealers HTTP/1.1" 200 4178
+[22/Oct/2026 00:17:30] "GET /fetchDealers HTTP/1.1" 200 4178
+[22/Oct/2026 00:17:30] "GET /fetchDealers HTTP/1.1" 200 4178
+[22/Oct/2026 00:17:32] "POST /djangoapp/api/login/ HTTP/1.1" 200 52
+[22/Oct/2026 00:17:32] "POST /djangoapp/api/logout/ HTTP/1.1" 200 60
+[22/Oct/2026 00:17:32] "GET /fetchDealers HTTP/1.1" 200 4178
+[22/Oct/2026 00:17:32] "GET /fetchReviews/dealer/1 HTTP/1.1" 200 395
+[22/Oct/2026 00:17:32] "GET /fetchDealer/1 HTTP/1.1" 200 523
+[22/Oct/2026 00:17:32] "GET /fetchDealers/Kansas HTTP/1.1" 200 1583
+[22/Oct/2026 00:17:32] "GET /djangoapp/get_cars HTTP/1.1" 200 2840
+[22/Oct/2026 00:17:32] "POST /djangoapp/api/analyze-review/ HTTP/1.1" 200 113
+[22/Oct/2026 00:17:37] "GET /fetchDealers HTTP/1.1" 200 4178
