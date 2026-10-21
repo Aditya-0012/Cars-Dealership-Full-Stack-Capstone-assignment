@@ -6,6 +6,11 @@ on:
         description: "The real public URL issued by Render, e.g. https://your-service.onrender.com"
         required: true
         type: string
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/deployed-evidence.yml"
+      - "deploymentURL"
 permissions:
   contents: write
 jobs:
@@ -29,7 +34,7 @@ jobs:
       - name: Capture the actual deployed pages
         shell: bash
         env:
-          DEPLOYMENT_URL: ${{ inputs.deployment_url }}
+          DEPLOYMENT_URL: ${{ inputs.deployment_url || 'https://cars-dealership-capstone-4q4l.onrender.com' }}
           GITHUB_RUN_ID: ${{ github.run_id }}
         run: |
           set -euo pipefail
