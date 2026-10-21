@@ -4,7 +4,7 @@ The repository includes a Dockerfile for building the Django application. A publ
 
 ## Before deploying
 
-1. Create a web/container service from this repository or build its Dockerfile.
+1. Easiest option: connect your Render account, choose **New → Blueprint**, and select this repository; Render reads the checked-in `render.yaml`. Alternatively, create a web/container service from the Dockerfile.
 2. Set `DJANGO_SECRET_KEY` to a long random secret, `DJANGO_DEBUG=False`, and `DJANGO_ALLOWED_HOSTS` to the exact public hostname provided by your host.
 3. If React is served from another origin, update `server/config/cors_middleware.py` to allow only that origin.
 4. Review database persistence: this coursework starter uses SQLite, which may be ephemeral on container hosts. Use a persistent disk or PostgreSQL before relying on stored reviews.
