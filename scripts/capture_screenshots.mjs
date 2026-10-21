@@ -71,7 +71,8 @@ try {
   await snap('admin_login.png');
 
   // Task 13: use Django's actual admin logout flow.
-  await page.goto(base + '/admin/logout/', { waitUntil: 'domcontentloaded' });
+  await page.getByRole('button', { name: /log out/i }).click();
+  await page.goto(base + '/admin/', { waitUntil: 'domcontentloaded' });
   await page.locator('#id_username').waitFor();
   await snap('admin_logout.png');
 } finally {
