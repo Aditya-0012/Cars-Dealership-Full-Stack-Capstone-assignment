@@ -20,6 +20,6 @@ class Command(BaseCommand):
         for make,model in MAKES: CarMake.objects.get_or_create(make=make,model=model,year=2025)
         user,created=User.objects.get_or_create(username='demo',defaults={'email':'demo@example.com','first_name':'Demo','last_name':'User'})
         if created: user.set_password('DemoPass123!'); user.save()
-        d=Dealer.objects.filter(state='Kansas').first()
+        d=Dealer.objects.order_by('id').first()
         if d and not d.reviews.exists(): DealerReview.objects.create(dealer=d,user=user,rating=5,review='Fantastic services and a friendly team.',sentiment='positive')
         self.stdout.write(self.style.SUCCESS(f'Seed complete: {Dealer.objects.count()} dealers, {CarMake.objects.count()} car models; demo user ready.'))
