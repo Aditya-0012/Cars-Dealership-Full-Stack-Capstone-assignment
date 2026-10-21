@@ -1,0 +1,3 @@
+import React,{useEffect,useState} from 'react';
+const API_BASE=import.meta.env.VITE_API_BASE_URL||'http://127.0.0.1:8000';
+export default function Dealers({state=''}){const [dealers,setDealers]=useState([]),[error,setError]=useState('');useEffect(()=>{fetch(API_BASE+'/djangoapp/api/dealers/'+(state?'?state='+encodeURIComponent(state):'')).then(r=>{if(!r.ok)throw Error('Could not load dealers');return r.json()}).then(d=>setDealers(d.dealers)).catch(e=>setError(e.message))},[state]);if(error)return <p role="alert">{error}</p>;return <div>{dealers.map(d=><article key={d.id}><img width="180" src={d.image_url} alt=""/><h3>{d.name}</h3><p>{d.city}, {d.state}</p><a href={API_BASE+'/dealer/'+d.id+'/'}>View details</a></article>)}</div>}
