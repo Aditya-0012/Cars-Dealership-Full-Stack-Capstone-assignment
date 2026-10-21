@@ -25,7 +25,14 @@ try {
   // Task 17: homepage before login.
   await page.goto(base + '/', { waitUntil: 'domcontentloaded' });
   await page.locator('.dealer-card').first().waitFor();
-  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.waitForFunction(() => Array.from(document.images).every(img => img.complete), { timeout: 15000 }).catch(() => {});
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    await Promise.all(Array.from(document.images, img => img.decode().catch(() => {})));
+    window.scrollTo(0, 0);
+  });
+  await page.bringToFront();
+  await delay(1800);
   await snap('get_dealers.png');
 
   // Task 18: homepage after logging in, with username and URL shown.
