@@ -1,9 +1,9 @@
 $ curl -i -b cookies.txt -c cookies.txt -X POST http://127.0.0.1:8000/djangoapp/api/logout/ -H 'Content-Type: application/json' -d '{}'
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    62  100    60  100     2  11888    396 --:--:-- --:--:-- --:--:-- 12400
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    62  100    60  100     2  14527    484 --:--:-- --:--:-- --:--:-- 15500
 HTTP/1.1 200 OK
-Date: Wed, 21 Oct 2026 12:30:30 GMT
+Date: Wed, 21 Oct 2026 12:33:47 GMT
 Server: WSGIServer/0.2 CPython/3.12.15
 Content-Type: application/json
 X-Frame-Options: DENY

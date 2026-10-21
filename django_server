@@ -1,12 +1,12 @@
 Watching for file changes with StatReloader
-[21/Oct/2026 18:00:29] "GET /djangoapp/api/dealers/ HTTP/1.1" 200 2740
-[21/Oct/2026 18:00:29] "GET /djangoapp/api/dealers/ HTTP/1.1" 200 2740
-[21/Oct/2026 18:00:30] "POST /djangoapp/api/login/ HTTP/1.1" 200 52
-[21/Oct/2026 18:00:30] "POST /djangoapp/api/logout/ HTTP/1.1" 200 60
-[21/Oct/2026 18:00:30] "GET /djangoapp/api/dealers/ HTTP/1.1" 200 2740
-[21/Oct/2026 18:00:30] "GET /djangoapp/api/dealers/1/reviews/ HTTP/1.1" 200 262
-[21/Oct/2026 18:00:30] "GET /djangoapp/api/dealers/1/ HTTP/1.1" 200 350
-[21/Oct/2026 18:00:30] "GET /djangoapp/api/dealers/?state=Kansas HTTP/1.1" 200 1055
-[21/Oct/2026 18:00:30] "GET /djangoapp/api/car-makes/ HTTP/1.1" 200 1138
-[21/Oct/2026 18:00:30] "POST /djangoapp/api/analyze-review/ HTTP/1.1" 200 113
-[21/Oct/2026 18:00:34] "GET /djangoapp/api/dealers/ HTTP/1.1" 200 2740
+[21/Oct/2026 18:03:47] "GET /djangoapp/api/dealers/ HTTP/1.1" 200 2740
+[21/Oct/2026 18:03:47] "GET /djangoapp/api/dealers/ HTTP/1.1" 200 2740
+[21/Oct/2026 18:03:47] "POST /djangoapp/api/login/ HTTP/1.1" 200 52
+[21/Oct/2026 18:03:47] "POST /djangoapp/api/logout/ HTTP/1.1" 200 60
+[21/Oct/2026 18:03:47] "GET /djangoapp/api/dealers/ HTTP/1.1" 200 2740
+[21/Oct/2026 18:03:47] "GET /djangoapp/api/dealers/1/reviews/ HTTP/1.1" 200 262
+[21/Oct/2026 18:03:47] "GET /djangoapp/api/dealers/1/ HTTP/1.1" 200 350
+[21/Oct/2026 18:03:47] "GET /djangoapp/api/dealers/?state=Kansas HTTP/1.1" 200 1055
+[21/Oct/2026 18:03:47] "GET /djangoapp/api/car-makes/ HTTP/1.1" 200 1138
+[21/Oct/2026 18:03:47] "POST /djangoapp/api/analyze-review/ HTTP/1.1" 200 113
+[21/Oct/2026 18:03:50] "GET /djangoapp/api/dealers/ HTTP/1.1" 200 2740

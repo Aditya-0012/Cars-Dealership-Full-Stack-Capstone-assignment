@@ -1,6 +1,6 @@
 GitHub Actions workflow: Django and frontend CI
-Workflow run ID: 39600088496
-Commit SHA: 50b7a1fffdfde84e146eea8f5ab48f96babb889d
+Workflow run ID: 39600417533
+Commit SHA: a82cb2b173ca5d290a81dbd5ea4b3d5fb62b4e8d
 
 $ python manage.py check
 System check identified no issues (0 silenced).
@@ -13,7 +13,7 @@ Creating test database for alias 'default'...
   mw_instance = middleware(adapted_handler)
 .....
 ----------------------------------------------------------------------
-Ran 5 tests in 1.748s
+Ran 5 tests in 1.066s
 
 OK
 Destroying test database for alias 'default'...
@@ -34,10 +34,10 @@ dist/index.html                   0.42 kB │ gzip:  0.30 kB
 dist/assets/index-BUStDaPD.css    3.52 kB │ gzip:  1.29 kB
 dist/assets/index-VqE7Df1o.js   224.26 kB │ gzip: 70.28 kB
 
-[32m✓ built in 142ms[39m
+[32m✓ built in 90ms[39m
 
 $ curl -fsS http://127.0.0.1:8000/djangoapp/api/dealers/
 {"dealers": [{"id": 5, "name": "Golden Gate Motors", "city": "San Jose", "state": "California", "address": "1500 Story Rd, San Jose, CA", "phone": "+1-408-555-0105", "email": "team@goldengatemotors.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 8, "name": "Rocky Mountain Auto", "city": "Denver", "state": "Colorado", "address": "1800 W Colfax Ave, Denver, CO", "phone": "+1-303-555-0108", "email": "contact@rockymountainauto.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 6, "name": "Lakeview Auto Gallery", "city": "Chicago", "state": "Illinois", "address": "6400 N Lincoln Ave, Chicago, IL", "phone": "+1-773-555-0106", "email": "info@lakeviewauto.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 3, "name": "Crossroads Car Center", "city": "Overland Park", "state": "Kansas", "address": "8900 Metcalf Ave, Overland Park, KS", "phone": "+1-913-555-0103", "email": "sales@crossroadscars.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 2, "name": "Sunflower Auto House", "city": "Topeka", "state": "Kansas", "address": "2500 SW Topeka Blvd, Topeka, KS", "phone": "+1-785-555-0102", "email": "topeka@sunflowerauto.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 1, "name": "Prairie Motor Group", "city": "Wichita", "state": "Kansas", "address": "1200 E Central Ave, Wichita, KS", "phone": "+1-316-555-0101", "email": "wichita@prairiemotors.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 7, "name": "Empire State Cars", "city": "Albany", "state": "New York", "address": "90 Central Ave, Albany, NY", "phone": "+1-518-555-0107", "email": "sales@empirecars.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 4, "name": "Lone Star Automotive", "city": "Austin", "state": "Texas", "address": "700 Congress Ave, Austin, TX", "phone": "+1-512-555-0104", "email": "hello@lonestarauto.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}], "count": 8}
 
 Detailed step log and GitHub Actions result:
-https://github.com/DakshDhaundiyal/Cars-Dealership-Full-Stack-Capstone-assignment/actions/runs/39600088496
+https://github.com/DakshDhaundiyal/Cars-Dealership-Full-Stack-Capstone-assignment/actions/runs/39600417533
