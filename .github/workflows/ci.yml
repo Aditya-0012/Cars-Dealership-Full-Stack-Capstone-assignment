@@ -96,20 +96,26 @@ jobs:
             echo "GitHub Actions workflow: Django and frontend CI"
             echo "Workflow run ID: ${GITHUB_RUN_ID}"
             echo "Commit SHA: ${GITHUB_SHA}"
-            echo "Steps completed before evidence generation:"
-            echo "1. Checkout repository"
-            echo "2. Set up Python 3.12"
-            echo "3. Install Django dependencies"
-            echo "4. Django system check"
-            echo "5. Database migrations"
-            echo "6. Seed sample dealer and car data"
-            echo "7. Django unit tests"
-            echo "8. Set up Node.js 22"
-            echo "9. Install React dependencies"
-            echo "10. Build the React frontend"
-            echo "11. Start Django and execute cURL smoke tests"
-            echo "Detailed step logs: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
-          } > ../CICD
+            echo
+            echo '$ python manage.py check'
+            python manage.py check
+            echo
+            echo '$ python manage.py migrate --check'
+            python manage.py migrate --check
+            echo
+            echo '$ python manage.py test'
+            python manage.py test
+            echo
+            echo '$ npm run build'
+            (cd frontend && npm run build)
+            echo
+            echo '$ curl -fsS http://127.0.0.1:8000/djangoapp/api/dealers/'
+            curl -fsS http://127.0.0.1:8000/djangoapp/api/dealers/
+            echo
+            echo
+            echo "Detailed step log and GitHub Actions result:"
+            echo "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          } > ../CICD 2>&1
           cat ../django_server
       - name: Capture real local browser screenshots
         working-directory: server
