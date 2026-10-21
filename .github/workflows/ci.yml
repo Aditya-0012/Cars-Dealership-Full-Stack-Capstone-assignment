@@ -157,6 +157,8 @@ jobs:
             echo "Evidence files are unchanged; no evidence commit required."
           else
             git commit -m "Add generated capstone submission evidence"
+            git fetch origin "${GITHUB_REF_NAME}"
+            git rebase "origin/${GITHUB_REF_NAME}"
             git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
       - name: Upload command-output evidence files
