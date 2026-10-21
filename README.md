@@ -19,12 +19,16 @@ Alternatively, open the [Render Blueprint setup page](https://dashboard.render.c
 pip install -r requirements.txt
 cd server
 python manage.py migrate
-python manage.py seed_data
+# Optional: create a local-only demo login for coursework screenshots
+# Linux/macOS/Git Bash:
+CREATE_DEMO_USER=true DEMO_USER_PASSWORD='ChooseYourLocalTestPassword123!' python manage.py seed_data
+# Windows PowerShell alternative:
+# $env:CREATE_DEMO_USER="true"; $env:DEMO_USER_PASSWORD="ChooseYourLocalTestPassword123!"; python manage.py seed_data
 python manage.py createsuperuser
 python manage.py runserver
 ```
 
-Open `http://127.0.0.1:8000/`. Django admin is at `/admin/`. A seed/demo account is `demo` / `DemoPass123!`; it is for local evaluation only and must be changed or removed before public production use.
+Open `http://127.0.0.1:8000/`. Django admin is at `/admin/`. Demo-account creation is disabled by default and requires the explicit local-only `CREATE_DEMO_USER=true` and `DEMO_USER_PASSWORD` environment variables. Never enable a shared demo account in production.
 
 Run the React frontend separately:
 ```bash
