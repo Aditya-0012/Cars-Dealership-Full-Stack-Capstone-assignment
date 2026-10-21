@@ -1,16 +1,43 @@
 GitHub Actions workflow: Django and frontend CI
-Workflow run ID: 39598641241
-Commit SHA: fbc5ba6fa68f3c675d5a34c87d42c698d497942b
-Steps completed before evidence generation:
-1. Checkout repository
-2. Set up Python 3.12
-3. Install Django dependencies
-4. Django system check
-5. Database migrations
-6. Seed sample dealer and car data
-7. Django unit tests
-8. Set up Node.js 22
-9. Install React dependencies
-10. Build the React frontend
-11. Start Django and execute cURL smoke tests
-Detailed step logs: https://github.com/DakshDhaundiyal/Cars-Dealership-Full-Stack-Capstone-assignment/actions/runs/39598641241
+Workflow run ID: 39599566715
+Commit SHA: 0c2a370407dbb9c0ccff96af2dee7f5ee8920bb6
+
+$ python manage.py check
+System check identified no issues (0 silenced).
+
+$ python manage.py migrate --check
+
+$ python manage.py test
+Creating test database for alias 'default'...
+/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/django/core/handlers/base.py:61: UserWarning: No directory at: /home/runner/work/Cars-Dealership-Full-Stack-Capstone-assignment/Cars-Dealership-Full-Stack-Capstone-assignment/server/staticfiles/
+  mw_instance = middleware(adapted_handler)
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 1.715s
+
+OK
+Destroying test database for alias 'default'...
+Found 5 test(s).
+System check identified no issues (0 silenced).
+
+$ npm run build
+
+> roadline-motors-frontend@1.0.0 build
+> vite build
+
+[36mvite v8.3.5 [32mbuilding client environment for production...[36m[39m
+transforming...
+✓ 17 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.42 kB │ gzip:  0.30 kB
+dist/assets/index-BUStDaPD.css    3.52 kB │ gzip:  1.29 kB
+dist/assets/index-VqE7Df1o.js   224.26 kB │ gzip: 70.28 kB
+
+[32m✓ built in 158ms[39m
+
+$ curl -fsS http://127.0.0.1:8000/djangoapp/api/dealers/
+{"dealers": [{"id": 5, "name": "Golden Gate Motors", "city": "San Jose", "state": "California", "address": "1500 Story Rd, San Jose, CA", "phone": "+1-408-555-0105", "email": "team@goldengatemotors.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 8, "name": "Rocky Mountain Auto", "city": "Denver", "state": "Colorado", "address": "1800 W Colfax Ave, Denver, CO", "phone": "+1-303-555-0108", "email": "contact@rockymountainauto.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 6, "name": "Lakeview Auto Gallery", "city": "Chicago", "state": "Illinois", "address": "6400 N Lincoln Ave, Chicago, IL", "phone": "+1-773-555-0106", "email": "info@lakeviewauto.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 3, "name": "Crossroads Car Center", "city": "Overland Park", "state": "Kansas", "address": "8900 Metcalf Ave, Overland Park, KS", "phone": "+1-913-555-0103", "email": "sales@crossroadscars.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 2, "name": "Sunflower Auto House", "city": "Topeka", "state": "Kansas", "address": "2500 SW Topeka Blvd, Topeka, KS", "phone": "+1-785-555-0102", "email": "topeka@sunflowerauto.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 1, "name": "Prairie Motor Group", "city": "Wichita", "state": "Kansas", "address": "1200 E Central Ave, Wichita, KS", "phone": "+1-316-555-0101", "email": "wichita@prairiemotors.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 7, "name": "Empire State Cars", "city": "Albany", "state": "New York", "address": "90 Central Ave, Albany, NY", "phone": "+1-518-555-0107", "email": "sales@empirecars.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 4, "name": "Lone Star Automotive", "city": "Austin", "state": "Texas", "address": "700 Congress Ave, Austin, TX", "phone": "+1-512-555-0104", "email": "hello@lonestarauto.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}], "count": 8}
+
+Detailed step log and GitHub Actions result:
+https://github.com/DakshDhaundiyal/Cars-Dealership-Full-Stack-Capstone-assignment/actions/runs/39599566715
