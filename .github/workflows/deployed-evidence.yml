@@ -13,6 +13,9 @@ on:
       - "deploymentURL"
 permissions:
   contents: write
+concurrency:
+  group: deployed-evidence-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   deployed-evidence:
     runs-on: ubuntu-latest
@@ -49,8 +52,21 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add deploymentURL deployed_landingpage.png deployed_loggedin.png deployed_dealer_detail.png deployed_add_review.png
+          if git diff --cached --quiet; then
+            echo "Deployed evidence is unchanged; no commit is required."
+            exit 0
+          fi
           git commit -m "Add verified deployed app submission evidence"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          for attempt in 1 2 3; do
+            git fetch origin "${GITHUB_REF_NAME}"
+            git rebase "origin/${GITHUB_REF_NAME}"
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              exit 0
+            fi
+            echo "Push race on attempt ${attempt}; syncing and retrying."
+          done
+          echo "Could not publish deployed evidence after three attempts."
+          exit 1
       - name: Upload deployed evidence artifact
         uses: actions/upload-artifact@v4
         with:
