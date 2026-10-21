@@ -1,6 +1,6 @@
 GitHub Actions workflow: Django and frontend CI
-Workflow run ID: 39598476446
-Commit SHA: fc185a6bdd9ee8dd59037655a0e43771c0caf7ff
+Workflow run ID: 39598641241
+Commit SHA: fbc5ba6fa68f3c675d5a34c87d42c698d497942b
 Steps completed before evidence generation:
 1. Checkout repository
 2. Set up Python 3.12
@@ -13,4 +13,4 @@ Steps completed before evidence generation:
 9. Install React dependencies
 10. Build the React frontend
 11. Start Django and execute cURL smoke tests
-Detailed step logs: https://github.com/DakshDhaundiyal/Cars-Dealership-Full-Stack-Capstone-assignment/actions/runs/39598476446
+Detailed step logs: https://github.com/DakshDhaundiyal/Cars-Dealership-Full-Stack-Capstone-assignment/actions/runs/39598641241
