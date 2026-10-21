@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: cars-dealership-capstone
+    runtime: docker
+    plan: free
+    healthCheckPath: /djangoapp/api/dealers/
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: DJANGO_ALLOWED_HOSTS
+        value: "127.0.0.1,localhost"
