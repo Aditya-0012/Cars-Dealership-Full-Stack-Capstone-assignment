@@ -1,0 +1,58 @@
+name: Capture deployed submission screenshots
+on:
+  workflow_dispatch:
+    inputs:
+      deployment_url:
+        description: "The real public URL issued by Render, e.g. https://your-service.onrender.com"
+        required: true
+        type: string
+permissions:
+  contents: write
+jobs:
+  deployed-evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser capture dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb scrot
+          npm install --no-save playwright --prefix server/frontend
+          server/frontend/node_modules/.bin/playwright install --with-deps chromium
+      - name: Capture the actual deployed pages
+        shell: bash
+        env:
+          DEPLOYMENT_URL: ${{ inputs.deployment_url }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          EVIDENCE_USER_PASSWORD="$(python -c 'import secrets; print(secrets.token_urlsafe(24))')"
+          export EVIDENCE_USER_PASSWORD
+          xvfb-run -a -s "-screen 0 1600x1000x24" node scripts/capture_deployed_screenshots.mjs
+          printf '%s\n' "${DEPLOYMENT_URL%/}" > deploymentURL
+      - name: Commit live deployment evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add deploymentURL deployed_landingpage.png deployed_loggedin.png deployed_dealer_detail.png deployed_add_review.png
+          git commit -m "Add verified deployed app submission evidence"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+      - name: Upload deployed evidence artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cars-dealership-deployed-evidence
+          path: |
+            deploymentURL
+            deployed_landingpage.png
+            deployed_loggedin.png
+            deployed_dealer_detail.png
+            deployed_add_review.png
