@@ -1,6 +1,9 @@
 name: Django and frontend CI
 permissions:
   contents: write
+concurrency:
+  group: cars-dealership-ci-${{ github.ref }}
+  cancel-in-progress: false
 on:
   push:
     branches: [main]
