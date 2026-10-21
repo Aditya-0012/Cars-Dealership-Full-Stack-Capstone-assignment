@@ -1,12 +1,12 @@
 GitHub Actions workflow: Django and frontend CI
-Workflow run ID: 39652660142
-Commit SHA: e00b4681882f5b2f3f8954600cc71a197594d0cd
-Workflow URL: https://github.com/DakshDhaundiyal/Cars-Dealership-Full-Stack-Capstone-assignment/actions/runs/39652660142
+Workflow run ID: 39654961506
+Commit SHA: 68cdb33d0a30598103deb7b5e56098e38a481494
+Workflow URL: https://github.com/DakshDhaundiyal/Cars-Dealership-Full-Stack-Capstone-assignment/actions/runs/39654961506
 
 Job: Lint Python Files
-Job ID: 119404731204
+Job ID: 119412672833
 Conclusion: success
-Duration: 10.0s
+Duration: 9.0s
 Steps:
   [PASS] 1. Set up job
   [PASS] 2. Check out repository
@@ -18,9 +18,9 @@ Steps:
   [PASS] 11. Complete job
 
 Job: Lint JavaScript Files
-Job ID: 119404731582
+Job ID: 119412673251
 Conclusion: success
-Duration: 15.0s
+Duration: 14.0s
 Steps:
   [PASS] 1. Set up job
   [PASS] 2. Check out repository
@@ -42,7 +42,7 @@ Creating test database for alias 'default'...
   mw_instance = middleware(adapted_handler)
 ........
 ----------------------------------------------------------------------
-Ran 8 tests in 1.593s
+Ran 8 tests in 2.563s
 
 OK
 Destroying test database for alias 'default'...
@@ -63,7 +63,7 @@ dist/index.html                   0.42 kB │ gzip:  0.30 kB
 dist/assets/index-BUStDaPD.css    3.52 kB │ gzip:  1.29 kB
 dist/assets/index-CMyWXM2P.js   224.16 kB │ gzip: 70.26 kB
 
-[32m✓ built in 101ms[39m
+[32m✓ built in 156ms[39m
 
 $ curl -fsS http://127.0.0.1:8000/fetchDealers
 [{"id": 5, "name": "Golden Gate Motors", "short_name": "Golden Gate", "full_name": "Golden Gate Motors", "city": "San Jose", "state": "California", "address": "1500 Story Rd, San Jose, CA", "zip": "95116", "zip_code": "95116", "lat": 37.3524, "latitude": 37.3524, "long": -121.8508, "longitude": -121.8508, "phone": "+1-408-555-0105", "email": "team@goldengatemotors.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 8, "name": "Rocky Mountain Auto", "short_name": "Rocky Mountain", "full_name": "Rocky Mountain Auto", "city": "Denver", "state": "Colorado", "address": "1800 W Colfax Ave, Denver, CO", "zip": "80204", "zip_code": "80204", "lat": 39.7392, "latitude": 39.7392, "long": -104.9903, "longitude": -104.9903, "phone": "+1-303-555-0108", "email": "contact@rockymountainauto.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 6, "name": "Lakeview Auto Gallery", "short_name": "Lakeview Auto", "full_name": "Lakeview Auto Gallery", "city": "Chicago", "state": "Illinois", "address": "6400 N Lincoln Ave, Chicago, IL", "zip": "60625", "zip_code": "60625", "lat": 41.9711, "latitude": 41.9711, "long": -87.703, "longitude": -87.703, "phone": "+1-773-555-0106", "email": "info@lakeviewauto.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 3, "name": "Crossroads Car Center", "short_name": "Crossroads Cars", "full_name": "Crossroads Car Center", "city": "Overland Park", "state": "Kansas", "address": "8900 Metcalf Ave, Overland Park, KS", "zip": "66204", "zip_code": "66204", "lat": 38.9822, "latitude": 38.9822, "long": -94.6708, "longitude": -94.6708, "phone": "+1-913-555-0103", "email": "sales@crossroadscars.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 2, "name": "Sunflower Auto House", "short_name": "Sunflower Auto", "full_name": "Sunflower Auto House", "city": "Topeka", "state": "Kansas", "address": "2500 SW Topeka Blvd, Topeka, KS", "zip": "66603", "zip_code": "66603", "lat": 39.0473, "latitude": 39.0473, "long": -95.6752, "longitude": -95.6752, "phone": "+1-785-555-0102", "email": "topeka@sunflowerauto.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 1, "name": "Prairie Motor Group", "short_name": "Prairie Motors", "full_name": "Prairie Motor Group", "city": "Wichita", "state": "Kansas", "address": "1200 E Central Ave, Wichita, KS", "zip": "67202", "zip_code": "67202", "lat": 37.6872, "latitude": 37.6872, "long": -97.3301, "longitude": -97.3301, "phone": "+1-316-555-0101", "email": "wichita@prairiemotors.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 7, "name": "Empire State Cars", "short_name": "Empire Cars", "full_name": "Empire State Cars", "city": "Albany", "state": "New York", "address": "90 Central Ave, Albany, NY", "zip": "12207", "zip_code": "12207", "lat": 42.6526, "latitude": 42.6526, "long": -73.7562, "longitude": -73.7562, "phone": "+1-518-555-0107", "email": "sales@empirecars.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}, {"id": 4, "name": "Lone Star Automotive", "short_name": "Lone Star Auto", "full_name": "Lone Star Automotive", "city": "Austin", "state": "Texas", "address": "700 Congress Ave, Austin, TX", "zip": "78701", "zip_code": "78701", "lat": 30.2672, "latitude": 30.2672, "long": -97.7431, "longitude": -97.7431, "phone": "+1-512-555-0104", "email": "hello@lonestarauto.example", "website": "https://example.com", "image_url": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"}]
