@@ -9,7 +9,7 @@ The repository includes a Dockerfile for building the Django application. A publ
 3. If React is served from another origin, update `server/config/cors_middleware.py` to allow only that origin.
 4. Review database persistence: this coursework starter uses SQLite, which may be ephemeral on container hosts. Use a persistent disk or PostgreSQL before relying on stored reviews.
 5. Deploy and verify both `/` and `/djangoapp/api/dealers/`, then save the provider-issued public URL in the rubric's `deploymentURL` file.
-6. Capture `deployed_landingpage.png`, `deployed_loggedin.png`, `deployed_dealer_detail.png`, and `deployed_add_review.png` from the live hostname with the actual browser address bar visible.
+6. In GitHub, open **Actions → Capture deployed submission screenshots → Run workflow** and paste the real service URL. The workflow registers a temporary evidence user, captures `deployed_landingpage.png`, `deployed_loggedin.png`, `deployed_dealer_detail.png`, and `deployed_add_review.png` from the live hostname, saves the actual URL to `deploymentURL`, and commits the evidence files. It will fail rather than capture screenshots if the supplied site is not responding with the expected dealer API.
 
 Do not enter a guessed hostname in `deploymentURL`: the URL must be issued by the provider and verified reachable.
 
