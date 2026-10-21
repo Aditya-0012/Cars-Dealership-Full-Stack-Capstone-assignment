@@ -1,4 +1,6 @@
 name: Django and frontend CI
+permissions:
+  contents: write
 on:
   push:
     branches: [main]
@@ -132,6 +134,20 @@ jobs:
           done
           curl -fsS http://127.0.0.1:8000/djangoapp/api/dealers/ >/dev/null
           xvfb-run -a -s "-screen 0 1600x1000x24" node ../scripts/capture_screenshots.mjs
+      - name: Commit local rubric evidence files
+        if: github.event_name != 'pull_request' && github.actor != 'github-actions[bot]'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add django_server loginuser logoutuser getdealerreviews getalldealers getdealerbyid getdealersbyState getallcarmakes analyzereview CICD admin_login.png admin_logout.png get_dealers.png get_dealers_loggedin.png dealersbystate.png dealer_id_reviews.png dealership_review_submission.png added_review.png
+          if git diff --cached --quiet; then
+            echo "Evidence files are unchanged; no evidence commit required."
+          else
+            git commit -m "Add generated capstone submission evidence"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
       - name: Upload command-output evidence files
         uses: actions/upload-artifact@v4
         with:
