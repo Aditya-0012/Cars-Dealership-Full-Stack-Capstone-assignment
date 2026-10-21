@@ -109,11 +109,12 @@ jobs:
         env:
           DJANGO_SECRET_KEY: test-only-secret-key
           DJANGO_DEBUG: 'True'
-          CI_ADMIN_PASSWORD: ScreenshotRoot123!
         shell: bash
         run: |
           set -euo pipefail
-          python manage.py shell -c "from django.contrib.auth.models import User; u, _ = User.objects.get_or_create(username='root'); u.is_staff=True; u.is_superuser=True; u.is_active=True; u.set_password('ScreenshotRoot123!'); u.save()"
+          CI_ADMIN_PASSWORD=$(python -c 'import secrets; print(secrets.token_urlsafe(20))')
+          export CI_ADMIN_PASSWORD
+          python manage.py shell -c "import os; from django.contrib.auth.models import User; u, _ = User.objects.get_or_create(username='root'); u.is_staff=True; u.is_superuser=True; u.is_active=True; u.set_password(os.environ['CI_ADMIN_PASSWORD']); u.save()"
           python manage.py collectstatic --noinput
           python manage.py runserver 127.0.0.1:8000 > ../django_screenshot_server.log 2>&1 &
           SERVER_PID=$!
