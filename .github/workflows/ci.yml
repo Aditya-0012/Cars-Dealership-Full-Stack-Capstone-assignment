@@ -114,6 +114,7 @@ jobs:
         run: |
           set -euo pipefail
           python manage.py shell -c "from django.contrib.auth.models import User; u, _ = User.objects.get_or_create(username='root'); u.is_staff=True; u.is_superuser=True; u.is_active=True; u.set_password('ScreenshotRoot123!'); u.save()"
+          python manage.py collectstatic --noinput
           python manage.py runserver 127.0.0.1:8000 > ../django_screenshot_server.log 2>&1 &
           SERVER_PID=$!
           cleanup() { kill "$SERVER_PID" >/dev/null 2>&1 || true; }
