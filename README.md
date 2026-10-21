@@ -8,6 +8,12 @@ A responsive dealership directory with Django APIs, dealer/review pages, a React
 - GitHub Actions: CI checks
 - Docker: container deployment starter
 
+## Deploy to Render
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/DakshDhaundiyal/Cars-Dealership-Full-Stack-Capstone-assignment)
+
+Alternatively, open the [Render Blueprint setup page](https://dashboard.render.com/blueprint/new?repo=https://github.com/DakshDhaundiyal/Cars-Dealership-Full-Stack-Capstone-assignment), review the checked-in `render.yaml`, and choose **Deploy Blueprint**. After Render finishes provisioning, copy the actual service URL into the rubric's `deploymentURL` file and capture deployment screenshots from that live URL.
+
 ## Run locally
 ```bash
 pip install -r requirements.txt
