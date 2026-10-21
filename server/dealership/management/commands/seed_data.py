@@ -1,3 +1,4 @@
+import os
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
 from dealership.models import Dealer, DealerReview, CarMake
@@ -18,8 +19,12 @@ class Command(BaseCommand):
         for name,city,state,address,phone,email in DEALERS:
             Dealer.objects.update_or_create(name=name,defaults={'city':city,'state':state,'address':address,'phone':phone,'email':email,'website':'https://example.com','image_url':PHOTO})
         for make,model in MAKES: CarMake.objects.get_or_create(make=make,model=model,year=2025)
-        user,created=User.objects.get_or_create(username='demo',defaults={'email':'demo@example.com','first_name':'Demo','last_name':'User'})
-        if created: user.set_password('DemoPass123!'); user.save()
+        user=None
+        if os.environ.get('CREATE_DEMO_USER','').lower() == 'true':
+            user,created=User.objects.get_or_create(username='demo',defaults={'email':'demo@example.com','first_name':'Demo','last_name':'User'})
+            user.set_password(os.environ['DEMO_USER_PASSWORD'])
+            user.save()
         d=Dealer.objects.order_by('id').first()
-        if d and not d.reviews.exists(): DealerReview.objects.create(dealer=d,user=user,rating=5,review='Fantastic services and a friendly team.',sentiment='positive')
-        self.stdout.write(self.style.SUCCESS(f'Seed complete: {Dealer.objects.count()} dealers, {CarMake.objects.count()} car models; demo user ready.'))
+        if user and d and not d.reviews.exists(): DealerReview.objects.create(dealer=d,user=user,rating=5,review='Fantastic services and a friendly team.',sentiment='positive')
+        user_status='demo user available for this run' if user else 'demo user disabled by default'
+        self.stdout.write(self.style.SUCCESS(f'Seed complete: {Dealer.objects.count()} dealers, {CarMake.objects.count()} car models; {user_status}.'))
