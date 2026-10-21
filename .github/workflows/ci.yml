@@ -104,6 +104,23 @@ jobs:
             echo "Detailed step logs: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
           } > ../CICD
           cat ../django_server
+      - name: Capture real local browser screenshots
+        working-directory: server
+        env:
+          DJANGO_SECRET_KEY: test-only-secret-key
+          DJANGO_DEBUG: 'True'
+          CI_ADMIN_PASSWORD: ScreenshotRoot123!
+        shell: bash
+        run: |
+          set -euo pipefail
+          python manage.py shell -c "from django.contrib.auth.models import User; u, _ = User.objects.get_or_create(username='root'); u.is_staff=True; u.is_superuser=True; u.is_active=True; u.set_password('ScreenshotRoot123!'); u.save()"
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb scrot
+          cd frontend
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+          cd ..
+          xvfb-run -a -s "-screen 0 1600x1000x24" node scripts/capture_screenshots.mjs
       - name: Upload command-output evidence files
         uses: actions/upload-artifact@v4
         with:
@@ -119,4 +136,12 @@ jobs:
             getallcarmakes
             analyzereview
             CICD
+            admin_login.png
+            admin_logout.png
+            get_dealers.png
+            get_dealers_loggedin.png
+            dealersbystate.png
+            dealer_id_reviews.png
+            dealership_review_submission.png
+            added_review.png
           if-no-files-found: error
