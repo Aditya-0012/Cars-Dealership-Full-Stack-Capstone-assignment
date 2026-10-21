@@ -1,12 +1,23 @@
+$ python3 manage.py runserver 127.0.0.1:8000
 Watching for file changes with StatReloader
-[21/Oct/2026 18:03:47] "GET /djangoapp/api/dealers/ HTTP/1.1" 200 2740
-[21/Oct/2026 18:03:47] "GET /djangoapp/api/dealers/ HTTP/1.1" 200 2740
-[21/Oct/2026 18:03:47] "POST /djangoapp/api/login/ HTTP/1.1" 200 52
-[21/Oct/2026 18:03:47] "POST /djangoapp/api/logout/ HTTP/1.1" 200 60
-[21/Oct/2026 18:03:47] "GET /djangoapp/api/dealers/ HTTP/1.1" 200 2740
-[21/Oct/2026 18:03:47] "GET /djangoapp/api/dealers/1/reviews/ HTTP/1.1" 200 262
-[21/Oct/2026 18:03:47] "GET /djangoapp/api/dealers/1/ HTTP/1.1" 200 350
-[21/Oct/2026 18:03:47] "GET /djangoapp/api/dealers/?state=Kansas HTTP/1.1" 200 1055
-[21/Oct/2026 18:03:47] "GET /djangoapp/api/car-makes/ HTTP/1.1" 200 1138
-[21/Oct/2026 18:03:47] "POST /djangoapp/api/analyze-review/ HTTP/1.1" 200 113
-[21/Oct/2026 18:03:50] "GET /djangoapp/api/dealers/ HTTP/1.1" 200 2740
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 21, 2026 - 23:56:39
+Django version 5.2.18, using settings 'config.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+[21/Oct/2026 23:56:40] "GET /fetchDealers HTTP/1.1" 200 4178
+[21/Oct/2026 23:56:40] "GET /fetchDealers HTTP/1.1" 200 4178
+[21/Oct/2026 23:56:41] "POST /djangoapp/api/login/ HTTP/1.1" 200 52
+[21/Oct/2026 23:56:41] "POST /djangoapp/api/logout/ HTTP/1.1" 200 60
+[21/Oct/2026 23:56:41] "GET /fetchDealers HTTP/1.1" 200 4178
+[21/Oct/2026 23:56:41] "GET /fetchReviews/dealer/1 HTTP/1.1" 200 395
+[21/Oct/2026 23:56:41] "GET /fetchDealer/1 HTTP/1.1" 200 523
+[21/Oct/2026 23:56:41] "GET /fetchDealers/Kansas HTTP/1.1" 200 1583
+[21/Oct/2026 23:56:41] "GET /djangoapp/get_cars HTTP/1.1" 200 2840
+[21/Oct/2026 23:56:41] "POST /djangoapp/api/analyze-review/ HTTP/1.1" 200 113
+[21/Oct/2026 23:56:44] "GET /fetchDealers HTTP/1.1" 200 4178
