@@ -11,3 +11,7 @@ services:
         value: "False"
       - key: DJANGO_ALLOWED_HOSTS
         value: "127.0.0.1,localhost"
+      - key: CREATE_DEMO_USER
+        value: "true"
+      - key: DEMO_USER_PASSWORD
+        sync: false
